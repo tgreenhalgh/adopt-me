@@ -5,10 +5,14 @@ import SearchParams from './SearchParams';
 
 const App = () => {
   return (
-    <div>
-      <h1 id="boo">Adopt Me!</h1>
-      <SearchParams />
-    </div>
+    // React.StrictMode "future-proofs" your code
+    // i.e. warns if you use things that will be deprecated soon
+    <React.StrictMode>
+      <div>
+        <h1 id="boo">Adopt Me!</h1>
+        <SearchParams />
+      </div>
+    </React.StrictMode>
   );
 };
 
