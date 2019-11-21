@@ -1,7 +1,7 @@
 /** @format */
 import React from 'react';
 import { render } from 'react-dom';
-import { Router } from '@reach/router';
+import { Router, Link } from '@reach/router';
 import SearchParams from './SearchParams';
 import Details from './Details';
 
@@ -11,7 +11,9 @@ const App = () => {
     // i.e. warns if you use things that will be deprecated soon
     <React.StrictMode>
       <div>
-        <h1 id="main">Adopt Me!</h1>
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
         <Router>
           <SearchParams path="/" />
           <Details path="/details/:id" />
