@@ -12,9 +12,7 @@ const SearchParams = () => {
   const [pets, setPets] = useState([]);
 
   async function requestPets() {
-    // function requestPets() {
     const { animals } = await pet.animals({
-      // const { animals } = pet.animals({
       location,
       breed,
       type: animal,
