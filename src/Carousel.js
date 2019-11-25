@@ -38,6 +38,10 @@ class Carousel extends React.Component {
             // eslint-disable-next-line
             <img
               key={photo}
+              // BAD way is
+              // onClick={this.handleIndexClick.bind(this, index)}
+              // because bind used to be (and still is on older browsers)
+              // really slow
               onClick={this.handleIndexClick}
               data-index={index}
               src={photo}
