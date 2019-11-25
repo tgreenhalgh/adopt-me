@@ -5,14 +5,15 @@ import pet from '@frontendmasters/pet';
 // can't use Hooks in classes
 
 class Details extends React.Component {
-  constructor(props) {
-    // `super` passes the props to parent (i.e. React.Component)
-    super(props);
+  state = { loading: true };
+  // constructor(props) {
+  //   // `super` passes the props to parent (i.e. React.Component)
+  //   super(props);
 
-    this.state = {
-      loading: true,
-    };
-  }
+  //   this.state = {
+  //     loading: true,
+  //   };
+  // }
   componentDidMount() {
     pet.animal(this.props.id).then(({ animal }) => {
       // "this" is not changed because using => (as opposed to function)
