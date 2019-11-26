@@ -5,6 +5,8 @@ import { Link, Redirect } from '@reach/router';
 
 class ErrorBoundary extends Component {
   state = { hasError: false, redirect: false };
+
+  // lifecycle method that gets called when there is an error
   static getDerivedStateFromError() {
     return { hasError: true };
   }
