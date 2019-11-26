@@ -1,6 +1,8 @@
 /** @format */
 import React from 'react';
 import pet from '@frontendmasters/pet';
+import { navigate } from '@reach/router';
+import Modal from './Modal';
 import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeContext from './ThemeContext';
@@ -8,7 +10,7 @@ import ThemeContext from './ThemeContext';
 // can't use Hooks in classes
 
 class Details extends React.Component {
-  state = { loading: true };
+  state = { loading: true, showModal: false };
   // constructor(props) {
   //   // `super` passes the props to parent (i.e. React.Component)
   //   super(props);
@@ -23,6 +25,7 @@ class Details extends React.Component {
       this.setState({
         // setState is a "shallow merge" e.g. Object.assign(oldState, newState)
         // which means what is in state stays unless overwritten
+        url: animal.url,
         name: animal.name,
         animal: animal.type,
         location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
@@ -33,12 +36,24 @@ class Details extends React.Component {
       });
     }, console.error);
   }
+
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  adopt = () => navigate(this.state.url); // could also be 'redirect'
+
   render() {
     if (this.state.loading) {
       return <h1>loading ...</h1>;
     }
 
-    const { animal, breed, location, description, name, media } = this.state;
+    const {
+      animal,
+      breed,
+      location,
+      description,
+      name,
+      media,
+      showModal,
+    } = this.state;
 
     return (
       <div className="details">
@@ -49,10 +64,24 @@ class Details extends React.Component {
           <ThemeContext.Consumer>
             {/* desctructure from the array, calls it `theme` */}
             {([theme]) => (
-              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+              <button
+                onClick={this.toggleModal}
+                style={{ backgroundColor: theme }}
+              >
+                Adopt {name}
+              </button>
             )}
           </ThemeContext.Consumer>
           <p>{description}</p>
+          {showModal ? (
+            <Modal>
+              <h1>Would you like to adopt {name}?</h1>
+              <div className="buttons">
+                <button onClick={this.adopt}>Yes</button>
+                <button onClick={this.toggleModal}>No</button>
+              </div>
+            </Modal>
+          ) : null}
         </div>
       </div>
     );
