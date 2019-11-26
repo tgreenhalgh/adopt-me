@@ -9,6 +9,7 @@ import ThemeContext from './ThemeContext';
 const App = () => {
   // note that themeHook is the whole array [color, setColor]
   const themeHook = useState('darkblue');
+
   return (
     // React.StrictMode "future-proofs" your code
     // i.e. warns if you use things that will be deprecated soon
