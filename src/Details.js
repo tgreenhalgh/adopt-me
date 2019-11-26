@@ -2,6 +2,7 @@
 import React from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
+import ErrorBoundary from './ErrorBoundary';
 
 // can't use Hooks in classes
 
@@ -52,4 +53,12 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      {/* spreads all the props */}
+      {/* e.g. <Details id={props.id} /> */}
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
